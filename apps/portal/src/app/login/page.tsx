@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Button, Input } from "@koro/ui";
+import { Button, Card, Input } from "@koro/ui";
 import { useAuth } from "@/lib/auth-context";
 
 export default function LoginPage() {
@@ -92,36 +92,38 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <Input
-              label="Email address"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@company.com"
-              required
-              autoComplete="email"
-            />
-            <Input
-              label="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-              autoComplete="current-password"
-            />
+          <Card variant="elevated" padding="lg">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <Input
+                label="Email address"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                required
+                autoComplete="email"
+              />
+              <Input
+                label="Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+                autoComplete="current-password"
+              />
 
-            {error && (
-              <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
-                {error}
-              </p>
-            )}
+              {error && (
+                <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
+                  {error}
+                </p>
+              )}
 
-            <Button type="submit" loading={submitting} fullWidth size="lg">
-              Sign in
-            </Button>
-          </form>
+              <Button type="submit" loading={submitting} fullWidth size="lg">
+                Sign in
+              </Button>
+            </form>
+          </Card>
 
           <p className="mt-8 text-center text-sm text-koro-muted">
             Demo credentials:{" "}

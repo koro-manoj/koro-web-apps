@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PORTAL_URL } from "@/lib/constants";
 
 export function SiteFooter() {
   return (
@@ -25,7 +26,7 @@ export function SiteFooter() {
             <ul className="space-y-2 text-white/70 text-sm">
               <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
               <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-              <li><Link href="http://localhost:3000" className="hover:text-white transition-colors">Portal</Link></li>
+              <li><Link href={PORTAL_URL} className="hover:text-white transition-colors">Portal</Link></li>
             </ul>
           </div>
 

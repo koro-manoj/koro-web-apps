@@ -1,16 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import type { AuthUser } from "@koro/api-client";
-import { Button } from "@koro/ui";
+import { Badge, Button } from "@koro/ui";
 import { useAuth } from "@/lib/auth-context";
 
 const navItems = [
-  { label: "Overview", href: "/dashboard", active: true },
-  { label: "Orders", href: "#", active: false },
-  { label: "Customers", href: "#", active: false },
-  { label: "Analytics", href: "#", active: false },
-  { label: "Settings", href: "#", active: false },
+  { label: "Overview", href: "/dashboard", icon: "◫" },
+  { label: "Orders", href: "#", icon: "◈" },
+  { label: "Customers", href: "#", icon: "◎" },
+  { label: "Analytics", href: "#", icon: "◉" },
+  { label: "Settings", href: "#", icon: "⚙" },
 ];
 
 export function DashboardShell({
@@ -21,55 +22,46 @@ export function DashboardShell({
   children: React.ReactNode;
 }) {
   const { logout } = useAuth();
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex portal-grid-bg">
       <aside className="hidden md:flex w-64 flex-col border-r border-koro-border bg-koro-surface/80 backdrop-blur-sm">
-        <div className="p-6 border-b border-koro-border">
-          <Link href="/dashboard" className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-koro-accent flex items-center justify-center">
-              <span className="text-white font-bold text-sm">K</span>
-            </div>
-            <span className="font-display text-xl text-koro-ink">Koro</span>
-          </Link>
-        </div>
+        <SidebarBrand />
+        <SidebarNav pathname="/dashboard" />
+        <SidebarUser user={user} onLogout={() => logout()} />
+      </aside>
 
-        <nav className="flex-1 p-4 space-y-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                item.active
-                  ? "bg-koro-accent/15 text-koro-accent"
-                  : "text-koro-muted hover:text-koro-ink hover:bg-koro-raised"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+      {mobileNavOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-40 bg-koro-ink/60 backdrop-blur-sm"
+          onClick={() => setMobileNavOpen(false)}
+          aria-hidden
+        />
+      )}
 
-        <div className="p-4 border-t border-koro-border">
-          <div className="flex items-center gap-3 px-2 mb-4">
-            <div className="w-9 h-9 rounded-full bg-koro-teal/20 flex items-center justify-center text-koro-teal font-semibold text-sm">
-              {user.name.charAt(0)}
-            </div>
-            <div className="min-w-0">
-              <p className="text-sm font-medium text-koro-ink truncate">
-                {user.name}
-              </p>
-              <p className="text-xs text-koro-muted truncate">{user.email}</p>
-            </div>
-          </div>
-          <Button variant="ghost" size="sm" fullWidth onClick={() => logout()}>
-            Sign out
-          </Button>
-        </div>
+      <aside
+        className={`md:hidden fixed inset-y-0 left-0 z-50 w-72 flex flex-col border-r border-koro-border bg-koro-surface transition-transform duration-300 ${
+          mobileNavOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <SidebarBrand />
+        <SidebarNav pathname="/dashboard" onNavigate={() => setMobileNavOpen(false)} />
+        <SidebarUser user={user} onLogout={() => logout()} />
       </aside>
 
       <div className="flex-1 flex flex-col min-w-0">
         <header className="md:hidden flex items-center justify-between p-4 border-b border-koro-border bg-koro-surface/80 backdrop-blur-sm">
+          <button
+            type="button"
+            onClick={() => setMobileNavOpen(true)}
+            className="p-2 -ml-2 text-koro-muted hover:text-koro-ink transition-colors"
+            aria-label="Open navigation"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
           <Link href="/dashboard" className="font-display text-xl text-koro-ink">
             Koro
           </Link>
@@ -80,6 +72,81 @@ export function DashboardShell({
 
         <main className="flex-1 p-6 md:p-10 overflow-auto">{children}</main>
       </div>
+    </div>
+  );
+}
+
+function SidebarBrand() {
+  return (
+    <div className="p-6 border-b border-koro-border">
+      <Link href="/dashboard" className="flex items-center gap-3">
+        <div className="w-9 h-9 rounded-lg bg-koro-accent flex items-center justify-center shadow-lg shadow-koro-accent/20">
+          <span className="text-white font-bold text-sm">K</span>
+        </div>
+        <div>
+          <span className="font-display text-xl text-koro-ink block leading-none">Koro</span>
+          <span className="text-[10px] uppercase tracking-widest text-koro-muted font-semibold">
+            Portal
+          </span>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
+function SidebarNav({
+  pathname,
+  onNavigate,
+}: {
+  pathname: string;
+  onNavigate?: () => void;
+}) {
+  return (
+    <nav className="flex-1 p-4 space-y-1">
+      {navItems.map((item) => {
+        const active = item.href === pathname;
+        return (
+          <Link
+            key={item.label}
+            href={item.href}
+            onClick={onNavigate}
+            className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              active
+                ? "bg-koro-accent/15 text-koro-accent"
+                : "text-koro-muted hover:text-koro-ink hover:bg-koro-raised"
+            }`}
+          >
+            <span className="text-base opacity-70">{item.icon}</span>
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
+}
+
+function SidebarUser({
+  user,
+  onLogout,
+}: {
+  user: AuthUser;
+  onLogout: () => void;
+}) {
+  return (
+    <div className="p-4 border-t border-koro-border">
+      <div className="flex items-center gap-3 px-2 mb-4">
+        <div className="w-9 h-9 rounded-full bg-koro-teal/20 flex items-center justify-center text-koro-teal font-semibold text-sm ring-2 ring-koro-teal/10">
+          {user.name.charAt(0)}
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium text-koro-ink truncate">{user.name}</p>
+          <p className="text-xs text-koro-muted truncate">{user.email}</p>
+        </div>
+        <Badge variant="success">Active</Badge>
+      </div>
+      <Button variant="ghost" size="sm" fullWidth onClick={onLogout}>
+        Sign out
+      </Button>
     </div>
   );
 }

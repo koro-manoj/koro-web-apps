@@ -7,6 +7,7 @@ import type { DashboardOverview } from "@koro/api-client";
 import { DashboardShell } from "@/components/dashboard-shell";
 import { StatsGrid } from "@/components/stats-grid";
 import { ActivityFeed } from "@/components/activity-feed";
+import { QuickActions } from "@/components/quick-actions";
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -25,17 +26,20 @@ export default function DashboardPage() {
 
   return (
     <DashboardShell user={user!}>
-      <header className="mb-10 animate-fade-up">
-        <p className="text-sm text-koro-muted mb-1">
-          {new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-          })}
-        </p>
-        <h1 className="font-display text-4xl text-koro-ink tracking-tight">
-          Good {getGreeting()}, {user?.name.split(" ")[0]}
-        </h1>
+      <header className="mb-10 animate-fade-up flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <p className="text-sm text-koro-muted mb-1">
+            {new Date().toLocaleDateString("en-US", {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+          <h1 className="font-display text-4xl text-koro-ink tracking-tight">
+            Good {getGreeting()}, {user?.name.split(" ")[0]}
+          </h1>
+        </div>
+        <QuickActions />
       </header>
 
       {loading && (

@@ -40,7 +40,10 @@ export function FeaturesSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14">
           {features.map((feature) => (
-            <article key={feature.number} className="group">
+            <article
+              key={feature.number}
+              className="group relative pl-6 border-l-2 border-brand-navy/8 hover:border-brand-copper transition-colors duration-300"
+            >
               <span className="feature-number text-sm font-semibold text-brand-copper/60 tracking-widest">
                 {feature.number}
               </span>

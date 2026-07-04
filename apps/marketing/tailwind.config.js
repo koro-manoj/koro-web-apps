@@ -18,12 +18,17 @@ module.exports = {
       },
       animation: {
         "slide-up": "slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "fade-in": "fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "reveal": "reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
       keyframes: {
         slideUp: {
           "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(12px) scale(0.98)" },
+          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
         },
         reveal: {
           "0%": { opacity: "0", clipPath: "inset(0 100% 0 0)" },

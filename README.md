@@ -86,7 +86,8 @@ koro-web-apps/
 │   ├── api-client/      # @koro/api-client
 │   └── ui/              # @koro/ui
 ├── docs/
-│   └── architecture.md
+│   ├── architecture.md
+│   └── DEPLOYMENT.md
 └── .cursor/rules/       # Engineering standards
 ```
 
@@ -97,6 +98,8 @@ koro-web-apps/
 - `feature/*` — feature work
 
 See [docs/architecture.md](docs/architecture.md) for system design details.
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for production deployment (portal :3000, marketing :3001).
 
 ## Live demo
 

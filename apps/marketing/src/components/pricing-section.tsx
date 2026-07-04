@@ -1,3 +1,6 @@
+import { Badge } from "@koro/ui";
+import { PORTAL_LOGIN_URL } from "@/lib/constants";
+
 const plans = [
   {
     name: "Starter",
@@ -51,16 +54,16 @@ export function PricingSection() {
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`rounded-2xl p-8 flex flex-col ${
+              className={`rounded-2xl p-8 flex flex-col transition-transform hover:-translate-y-1 duration-300 ${
                 plan.highlighted
                   ? "bg-brand-navy text-white ring-2 ring-brand-copper shadow-xl shadow-brand-navy/10"
-                  : "bg-white border border-brand-navy/8"
+                  : "bg-white border border-brand-navy/8 hover:shadow-lg hover:shadow-brand-navy/5"
               }`}
             >
               {plan.highlighted && (
-                <span className="text-xs font-semibold uppercase tracking-wider text-brand-copper mb-4">
+                <Badge variant="accent" style={{ alignSelf: "flex-start", marginBottom: 16 }}>
                   Most popular
-                </span>
+                </Badge>
               )}
               <h3
                 className={`font-display text-2xl ${
@@ -109,12 +112,8 @@ export function PricingSection() {
               </ul>
 
               <a
-                href="http://localhost:3000/login"
-                className={`inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-lg transition-colors ${
-                  plan.highlighted
-                    ? "bg-brand-copper text-white hover:bg-brand-copper/90"
-                    : "bg-brand-navy text-white hover:bg-brand-navy/90"
-                }`}
+                href={PORTAL_LOGIN_URL}
+                className={plan.highlighted ? "cta-primary w-full text-center" : "cta-dark w-full text-center"}
               >
                 {plan.price !== null ? "Start trial" : "Contact sales"}
               </a>

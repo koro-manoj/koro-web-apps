@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PORTAL_LOGIN_URL } from "@/lib/constants";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -33,15 +34,12 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <a
-            href="http://localhost:3000/login"
+            href={PORTAL_LOGIN_URL}
             className="hidden sm:inline text-sm font-medium text-brand-slate hover:text-brand-navy transition-colors"
           >
             Sign in
           </a>
-          <a
-            href="#pricing"
-            className="inline-flex items-center px-4 py-2 text-sm font-semibold text-white bg-brand-navy rounded-lg hover:bg-brand-navy/90 transition-colors"
-          >
+          <a href="#pricing" className="cta-primary-sm">
             Get started
           </a>
         </div>
