@@ -97,3 +97,7 @@ koro-web-apps/
 - `feature/*` — feature work
 
 See [docs/architecture.md](docs/architecture.md) for system design details.
+
+## Live demo
+
+**URL:** _Pending deployment_ — [GitHub](https://github.com/koro-manoj/koro-web-apps)
