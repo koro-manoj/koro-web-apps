@@ -80,27 +80,13 @@ Expected Laravel endpoints:
 ```
 koro-web-apps/
 ├── apps/
-│   ├── portal/          # Authenticated dashboard
-│   └── marketing/       # Public marketing site
-├── packages/
-│   ├── api-client/      # @koro/api-client
-│   └── ui/              # @koro/ui
-├── docs/
-│   ├── architecture.md
-│   └── DEPLOYMENT.md
-└── .cursor/rules/       # Engineering standards
+│   ├── portal/
+│   └── marketing/
+└── packages/
+    ├── api-client/
+    └── ui/
 ```
-
-## Branch strategy
-
-- `main` — stable releases
-- `dev` — integration branch
-- `feature/*` — feature work
-
-See [docs/architecture.md](docs/architecture.md) for system design details.
-
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for production deployment (portal :3000, marketing :3001).
 
 ## Live demo
 
-**URL:** _Pending deployment_ — [GitHub](https://github.com/koro-manoj/koro-web-apps)
+Pending deployment.

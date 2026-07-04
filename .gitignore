@@ -13,3 +13,4 @@ coverage
 
 # Local IDE config (not for public repos)
 .cursor/
+docs/
