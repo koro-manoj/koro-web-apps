@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+
+:root {
+  --koro-font-sans: "DM Sans", system-ui, sans-serif;
+  --koro-font-display: "Instrument Serif", Georgia, serif;
+
+  --koro-ink: #0c0f14;
+  --koro-ink-muted: #5c6470;
+  --koro-ink-subtle: #8b939e;
+  --koro-surface: #ffffff;
+  --koro-surface-raised: #f7f8fa;
+  --koro-surface-sunken: #eef0f3;
+  --koro-border: #e2e5ea;
+  --koro-border-strong: #c8cdd6;
+
+  --koro-accent: #c45c26;
+  --koro-accent-hover: #a84d1f;
+  --koro-accent-soft: rgba(196, 92, 38, 0.12);
+  --koro-teal: #1a7f7a;
+  --koro-teal-soft: rgba(26, 127, 122, 0.1);
+
+  --koro-success: #1d7a4a;
+  --koro-warning: #b8860b;
+  --koro-danger: #c0392b;
+
+  --koro-radius-sm: 6px;
+  --koro-radius-md: 10px;
+  --koro-radius-lg: 16px;
+  --koro-radius-xl: 24px;
+
+  --koro-shadow-sm: 0 1px 2px rgba(12, 15, 20, 0.06);
+  --koro-shadow-md: 0 4px 16px rgba(12, 15, 20, 0.08);
+  --koro-shadow-lg: 0 12px 40px rgba(12, 15, 20, 0.12);
+
+  --koro-focus-ring: 0 0 0 3px rgba(196, 92, 38, 0.25);
+}
+
+[data-theme="dark"] {
+  --koro-ink: #eef1f5;
+  --koro-ink-muted: #9aa3af;
+  --koro-ink-subtle: #6b7380;
+  --koro-surface: #12161d;
+  --koro-surface-raised: #1a1f28;
+  --koro-surface-sunken: #0c0f14;
+  --koro-border: #2a3140;
+  --koro-border-strong: #3d4656;
+
+  --koro-accent: #e07a3a;
+  --koro-accent-hover: #f08a4a;
+  --koro-accent-soft: rgba(224, 122, 58, 0.15);
+  --koro-teal: #3db8b0;
+  --koro-teal-soft: rgba(61, 184, 176, 0.12);
+
+  --koro-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --koro-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --koro-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.koro-reset {
+  font-family: var(--koro-font-sans);
+  color: var(--koro-ink);
+  -webkit-font-smoothing: antialiased;
+}

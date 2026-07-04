@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@koro/ui/styles.css";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-brand-cream text-brand-navy font-sans;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% -10%, rgba(196, 92, 38, 0.08), transparent),
+      radial-gradient(ellipse 50% 40% at 90% 20%, rgba(74, 124, 111, 0.06), transparent);
+  }
+
+  .section-divider {
+    background: linear-gradient(90deg, transparent, rgba(196, 92, 38, 0.3), transparent);
+    height: 1px;
+  }
+
+  .feature-number {
+    font-variant-numeric: tabular-nums;
+  }
+}
