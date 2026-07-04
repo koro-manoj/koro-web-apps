@@ -10,3 +10,6 @@ dist
 *.log
 coverage
 .vercel
+
+# Local IDE config (not for public repos)
+.cursor/
