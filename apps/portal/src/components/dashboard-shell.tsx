@@ -2,16 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { AuthUser } from "@koro/api-client";
 import { Badge, Button } from "@koro/ui";
 import { useAuth } from "@/lib/auth-context";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: "◫" },
-  { label: "Orders", href: "#", icon: "◈" },
-  { label: "Customers", href: "#", icon: "◎" },
-  { label: "Analytics", href: "#", icon: "◉" },
-  { label: "Settings", href: "#", icon: "⚙" },
+  { label: "Orders", href: "/dashboard/orders", icon: "◈" },
+  { label: "Customers", href: "/dashboard/customers", icon: "◎" },
+  { label: "Analytics", href: "/dashboard/analytics", icon: "◉" },
+  { label: "Settings", href: "/dashboard/settings", icon: "⚙" },
 ];
 
 export function DashboardShell({
@@ -23,12 +24,13 @@ export function DashboardShell({
 }) {
   const { logout } = useAuth();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="min-h-screen flex portal-grid-bg">
       <aside className="hidden md:flex w-64 flex-col border-r border-koro-border bg-koro-surface/80 backdrop-blur-sm">
         <SidebarBrand />
-        <SidebarNav pathname="/dashboard" />
+        <SidebarNav pathname={pathname} />
         <SidebarUser user={user} onLogout={() => logout()} />
       </aside>
 
@@ -46,7 +48,7 @@ export function DashboardShell({
         }`}
       >
         <SidebarBrand />
-        <SidebarNav pathname="/dashboard" onNavigate={() => setMobileNavOpen(false)} />
+        <SidebarNav pathname={pathname} onNavigate={() => setMobileNavOpen(false)} />
         <SidebarUser user={user} onLogout={() => logout()} />
       </aside>
 
