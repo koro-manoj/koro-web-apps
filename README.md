@@ -6,7 +6,7 @@ Monorepo for the Koro platform frontends — a typed API client, shared UI libra
 
 | Package / App | Description |
 |---------------|-------------|
-| `packages/api-client` | Typed HTTP client for Laravel REST API |
+| `packages/api-client` | Typed HTTP client for portal REST API |
 | `packages/ui` | Shared React component library with design tokens |
 | `apps/portal` | Next.js 14 dashboard — login, stats, activity feed |
 | `apps/marketing` | Next.js 14 marketing site |
@@ -49,16 +49,18 @@ When `NEXT_PUBLIC_USE_MOCK_API=true` (default):
 - Email: `demo@koro.io`
 - Password: `password`
 
-### Laravel API integration
+### Live API integration (koro-go-services)
 
 Set in `apps/portal/.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=https://your-laravel-api.example.com
+NEXT_PUBLIC_API_URL=http://localhost:8080
 NEXT_PUBLIC_USE_MOCK_API=false
 ```
 
-Expected Laravel endpoints:
+Start the Go API with `make docker-up` in `koro-go-services`. Demo login: `demo@koro.io` / `password`.
+
+Expected endpoints (implemented by `koro-go-services/internal/portal`):
 
 | Method | Path | Purpose |
 |--------|------|---------|
@@ -66,6 +68,8 @@ Expected Laravel endpoints:
 | POST | `/api/auth/logout` | Revokes session |
 | GET | `/api/auth/me` | Current authenticated user |
 | GET | `/api/dashboard/overview` | Stats + recent activity |
+
+Laravel `/api/v1/*` integration is optional and uses a different path prefix.
 
 ## Scripts
 
